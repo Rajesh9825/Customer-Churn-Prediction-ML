@@ -38,6 +38,21 @@ permissions:
   contents: read
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clean up disk space
+        run: sudo rm -rf /usr/local/lib/python3.8/site-packages/nvidia/nccl/lib/libnccl.so.2
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cache Python dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            
   integration:
     name: Continuous Integration
     runs-on: ubuntu-latest
