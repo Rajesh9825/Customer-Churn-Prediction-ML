@@ -11,11 +11,11 @@ app = application
 # Route for home page
 @app.route('/')
 def index():
-    return "Hello Wolrd"
+    return "Thanks for checking my project"
 
 
 @app.route('/predict',methods=['POST'])
-def predict_data():
+def predict_churn():
     try:
         data = CustomData( CreditScore =int(request.form.get("CreditScore")) ,
             Geography=request.form.get("Geography"),
@@ -26,7 +26,7 @@ def predict_data():
             NumOfProducts=int(request.form.get("NumOfProducts")),
             HasCrCard=int(request.form.get("HasCrCard")),
             IsActiveMember=int(request.form.get("IsActiveMember")),
-            EstimatedSalary = int(request.form.get("EstimatedSalary"))
+            EstimatedSalary = float(request.form.get("EstimatedSalary"))
             )
         pred_df = data.get_data_as_data_frame()
         print(pred_df)
@@ -34,6 +34,7 @@ def predict_data():
         predict_pipeline = PredictPipeline()
 
         results = predict_pipeline.predict(pred_df)
+        print(f"prediction: {results}")
 
         return jsonify({"Prediction" : results[0]})
 
@@ -43,6 +44,23 @@ def predict_data():
 
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0",debug=True)
+    app.run(host="0.0.0.0",debug=True,port=5000)
 
 
+
+
+"""
+{
+"CreditScore" : 430,
+"Geography": "Germany",
+"Gender":"Female",
+"Age":38,
+"Tenure":8,
+"Balance":153058.64,
+"NumOfProducts":1,
+"HasCrCard":1,
+"IsActiveMember":0,
+"EstimatedSalary":99377.27
+}
+
+"""
