@@ -38,6 +38,21 @@ permissions:
   contents: read
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Clean up Docker images and containers
+      run: |
+        docker system prune -af
+
+    - name: Build Docker image
+      run: |
+        docker build -t my-image .
+        
   integration:
     name: Continuous Integration
     runs-on: ubuntu-latest
@@ -107,7 +122,9 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
       
-      
+      - name: Clean up disk space
+        run: sudo rm -rf /var/lib/apt/lists/*
+        
       - name: Pull latest images
         run: |
          docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
