@@ -109,7 +109,7 @@ jobs:
       
       - name: Clean up disk space
         run: sudo rm -rf /var/lib/apt/lists/*
-
+        
       - name: Pull latest images
         run: |
          docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
