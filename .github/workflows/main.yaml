@@ -40,11 +40,18 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Clean up disk space
-        run: sudo rm -rf /usr/local/lib/python3.8/site-packages/nvidia/nccl/lib/libnccl.so.2
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Clean up Docker images and containers
+      run: |
+        docker system prune -af
+
+    - name: Build Docker image
+      run: |
+        docker build -t my-image .
         
   integration:
     name: Continuous Integration
