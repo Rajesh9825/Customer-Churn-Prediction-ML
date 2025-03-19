@@ -38,12 +38,16 @@ def predict_churn():
             print(prediction)
             print(proba)
 
-            #prediction_text = "Customer is likely to churn" if prediction == 1 else "Customer is not likely to churn"
+            prediction_text = "Customer is likely to churn" if prediction == 1 else "Customer is not likely to churn"
 
-        return jsonify({
-            "Prediction": str(prediction)
+        response_data = {
+            "Prediction": str(prediction),
+            "Confidence_Score": f"{proba * 100:.2f}%",
+            "Message": prediction_text
+        }
 
-        })
+        print(f"Response Data: {response_data}")  # Check this in Render logs
+        return jsonify(response_data)
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
