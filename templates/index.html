@@ -124,43 +124,49 @@
 
     <!-- Add JavaScript here -->
     <script>
-        async function predictChurn() {
-            const data = {
-                CreditScore: document.getElementById('creditScore').value,
-                Geography: document.getElementById('geography').value,
-                Gender: document.getElementById('gender').value,
-                Age: document.getElementById('age').value,
-                Tenure: document.getElementById('tenure').value,
-                Balance: document.getElementById('balance').value,
-                NumOfProducts: document.getElementById('numOfProducts').value,
-                HasCrCard: document.getElementById('hasCrCard').value,
-                IsActiveMember: document.getElementById('isActiveMember').value,
-                EstimatedSalary: document.getElementById('estimatedSalary').value
-            };
+       async function predictChurn() {
+    const data = {
+        CreditScore: document.getElementById('creditScore').value,
+        Geography: document.getElementById('geography').value,
+        Gender: document.getElementById('gender').value,
+        Age: document.getElementById('age').value,
+        Tenure: document.getElementById('tenure').value,
+        Balance: document.getElementById('balance').value,
+        NumOfProducts: document.getElementById('numOfProducts').value,
+        HasCrCard: document.getElementById('hasCrCard').value,
+        IsActiveMember: document.getElementById('isActiveMember').value,
+        EstimatedSalary: document.getElementById('estimatedSalary').value
+    };
 
-            try {
-                const response = await fetch('/predict', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(data)
-                });
+    try {
+        const response = await fetch('/predict', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(data)
+        });
 
-                const result = await response.json();
+        const result = await response.json();
 
-                const predictionText = result.Prediction === "1" 
-                    ? "Customer is likely to churn" 
-                    : "Customer is not likely to churn";
+        if (result.Prediction !== undefined) {
+            const predictionText = result.Prediction === "1"
+                ? "Customer is likely to churn"
+                : "Customer is not likely to churn";
 
-                document.getElementById('result').innerHTML = `
-                    <div>Prediction: ${result.Prediction}</div>
-                    <div style="color: ${result.Prediction === "1" ? 'red' : 'green'}; font-weight: bold;">
-                        ${predictionText}
-                    </div>
-                `;
-            } catch (error) {
-                document.getElementById('result').innerText = `Error: ${error}`;
-            }
+            document.getElementById('result').innerHTML = `
+                <div>Prediction: ${result.Prediction}</div>
+                <div>Confidence Interval: ${result.Confidence_Score}</div>
+                <div style="color: ${result.Prediction === "1" ? 'red' : 'green'}; font-weight: bold;">
+                    ${predictionText}
+                </div>
+            `;
+        } else {
+            document.getElementById('result').innerText = `Error: Unexpected response structure`;
         }
+    } catch (error) {
+        document.getElementById('result').innerText = `Error: ${error.message}`;
+    }
+}
+
     </script>
 </body>
 </html>
