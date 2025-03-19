@@ -28,7 +28,7 @@ def predict_churn():
         )
 
         df = data.get_data_as_data_frame()
-        
+
         predict_pipeline = PredictPipeline()
 
         pred, pred_proba = predict_pipeline.predict(df)
@@ -69,3 +69,5 @@ if __name__ == "__main__":
 }
 
 """
+
+
