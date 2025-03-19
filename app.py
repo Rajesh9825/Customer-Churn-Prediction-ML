@@ -35,14 +35,14 @@ def predict_churn():
 
             prediction = int(pred[0])  
             proba = pred_proba[0][1] 
-            print(prediction)
-            print(proba)
+            # print(prediction)
+            # print(proba)
 
             prediction_text = "Customer is likely to churn" if prediction == 1 else "Customer is not likely to churn"
 
         response_data = {
             "Prediction": str(prediction),
-            "Confidence_Score": f"{proba * 100:.2f}%",
+            # "Confidence_Score": f"{proba * 100:.2f}%",
             "Message": prediction_text
         }
 

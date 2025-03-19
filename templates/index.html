@@ -155,7 +155,6 @@
 
             document.getElementById('result').innerHTML = `
                 <div>Prediction: ${result.Prediction || "N/A"}</div>
-                <div>Confidence Interval: ${result.Confidence_Score || "N/A"}</div>
                 <div style="color: ${result.Prediction === "1" ? 'red' : 'green'}; font-weight: bold;">
                     ${result.Message || predictionText}
                 </div>
