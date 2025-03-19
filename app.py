@@ -14,30 +14,31 @@ def index():
 @app.route('/predict', methods=['POST'])
 def predict_churn():
     try:
-        data = CustomData(
-            CreditScore=int(request.form.get("CreditScore")),
-            Geography=request.form.get("Geography"),
-            Gender=request.form.get("Gender"),
-            Age=int(request.form.get("Age")),
-            Tenure=int(request.form.get("Tenure")),
-            Balance=float(request.form.get("Balance") or 0.0),
-            NumOfProducts=int(request.form.get("NumOfProducts")),
-            HasCrCard=int(request.form.get("HasCrCard")),
-            IsActiveMember=int(request.form.get("IsActiveMember")),
-            EstimatedSalary=float(request.form.get("EstimatedSalary") or 0.0)
-        )
+        if request.method == 'POST':
+            data = CustomData(
+                CreditScore=int(request.form.get("CreditScore")),
+                Geography=request.form.get("Geography"),
+                Gender=request.form.get("Gender"),
+                Age=int(request.form.get("Age")),
+                Tenure=int(request.form.get("Tenure")),
+                Balance=float(request.form.get("Balance") or 0.0),
+                NumOfProducts=int(request.form.get("NumOfProducts")),
+                HasCrCard=int(request.form.get("HasCrCard")),
+                IsActiveMember=int(request.form.get("IsActiveMember")),
+                EstimatedSalary=float(request.form.get("EstimatedSalary") or 0.0)
+            )
 
-        df = data.get_data_as_data_frame()
-        predict_pipeline = PredictPipeline()
+            df = data.get_data_as_data_frame()
+            predict_pipeline = PredictPipeline()
 
-        pred, pred_proba = predict_pipeline.predict(df)
+            pred, pred_proba = predict_pipeline.predict(df)
 
-        prediction = int(pred[0])  
-        proba = pred_proba[0][1] 
-        print(prediction)
-        print(proba)
+            prediction = int(pred[0])  
+            proba = pred_proba[0][1] 
+            print(prediction)
+            print(proba)
 
-        #prediction_text = "Customer is likely to churn" if prediction == 1 else "Customer is not likely to churn"
+            #prediction_text = "Customer is likely to churn" if prediction == 1 else "Customer is not likely to churn"
 
         return jsonify({
             "Prediction": str(prediction)
