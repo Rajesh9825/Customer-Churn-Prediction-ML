@@ -122,6 +122,7 @@
         <div id="result"></div>
     </div>
 
+    <!-- Add JavaScript here -->
     <script>
         async function predictChurn() {
             const data = {
@@ -143,8 +144,8 @@
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams(data)
                 });
+
                 const result = await response.json();
-                
 
                 const predictionText = result.Prediction === "1" 
                     ? "Customer is likely to churn" 
@@ -152,12 +153,10 @@
 
                 document.getElementById('result').innerHTML = `
                     <div>Prediction: ${result.Prediction}</div>
-                    
                     <div style="color: ${result.Prediction === "1" ? 'red' : 'green'}; font-weight: bold;">
-                    ${predictionText}
+                        ${predictionText}
                     </div>
                 `;
-
             } catch (error) {
                 document.getElementById('result').innerText = `Error: ${error}`;
             }
