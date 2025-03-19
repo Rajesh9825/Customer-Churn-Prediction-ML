@@ -40,8 +40,8 @@ def predict_churn():
         #prediction_text = "Customer is likely to churn" if prediction == 1 else "Customer is not likely to churn"
 
         return jsonify({
-            "Prediction": str(prediction),
-            #"Confidence_Score": f"{proba * 100:.2f}%"
+            "Prediction": str(prediction)
+
         })
 
     except Exception as e:
