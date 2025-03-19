@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 import numpy as np
 import pandas as pd
 from src.pipeline.prediction_pipeline import CustomData, PredictPipeline
+from src.exception import CustomException
 
 app = Flask(__name__)
 application = app
@@ -48,7 +49,7 @@ def predict_churn():
 
 if __name__ == "__main__":
     
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="0.0.0.0", port=8080, debug=True, threaded=True)
     
 
 
