@@ -124,19 +124,20 @@
 
     <!-- Add JavaScript here -->
     <script>
+       
        async function predictChurn() {
-        const data = {
-            CreditScore: document.getElementById('creditScore').value,
-            Geography: document.getElementById('geography').value,
-            Gender: document.getElementById('gender').value,
-            Age: document.getElementById('age').value,
-            Tenure: document.getElementById('tenure').value,
-            Balance: document.getElementById('balance').value,
-            NumOfProducts: document.getElementById('numOfProducts').value,
-            HasCrCard: document.getElementById('hasCrCard').value,
-            IsActiveMember: document.getElementById('isActiveMember').value,
-            EstimatedSalary: document.getElementById('estimatedSalary').value
-        };
+    const data = {
+        CreditScore: document.getElementById('creditScore').value,
+        Geography: document.getElementById('geography').value,
+        Gender: document.getElementById('gender').value,
+        Age: document.getElementById('age').value,
+        Tenure: document.getElementById('tenure').value,
+        Balance: document.getElementById('balance').value,
+        NumOfProducts: document.getElementById('numOfProducts').value,
+        HasCrCard: document.getElementById('hasCrCard').value,
+        IsActiveMember: document.getElementById('isActiveMember').value,
+        EstimatedSalary: document.getElementById('estimatedSalary').value
+    };
 
     try {
         const response = await fetch('/predict', {
@@ -147,18 +148,20 @@
 
         const result = await response.json();
 
-        if (result.Prediction !== undefined) {
+        if (result.Prediction) {
             const predictionText = result.Prediction === "1"
                 ? "Customer is likely to churn"
                 : "Customer is not likely to churn";
 
             document.getElementById('result').innerHTML = `
-                <div>Prediction: ${result.Prediction}</div>
-                <div>Confidence Interval: ${result.Confidence_Score}</div>
+                <div>Prediction: ${result.Prediction || "N/A"}</div>
+                <div>Confidence Interval: ${result.Confidence_Score || "N/A"}</div>
                 <div style="color: ${result.Prediction === "1" ? 'red' : 'green'}; font-weight: bold;">
-                    ${predictionText}
+                    ${result.Message || predictionText}
                 </div>
             `;
+        } else if (result.error) {
+            document.getElementById('result').innerText = `Error: ${result.error}`;
         } else {
             document.getElementById('result').innerText = `Error: Unexpected response structure`;
         }
@@ -166,6 +169,7 @@
         document.getElementById('result').innerText = `Error: ${error.message}`;
     }
 }
+
 
     </script>
 </body>
