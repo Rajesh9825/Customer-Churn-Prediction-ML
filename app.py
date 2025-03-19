@@ -27,15 +27,25 @@ def predict_churn():
             EstimatedSalary=float(request.form.get("EstimatedSalary"))
         )
 
-        pred_df = data.get_data_as_data_frame()
-        print(pred_df)
-
+        df = data.get_data_as_data_frame()
+        
         predict_pipeline = PredictPipeline()
 
-        results = predict_pipeline.predict(pred_df)
-        print(f"Prediction: {results}")
+        pred, pred_proba = predict_pipeline.predict(df)
+        #print(f"Prediction: {results}")
+        print(pred)
+        print(pred_proba)
+        prediction = int(pred[0])  # Convert result to integer
+        #confidence= abs(pred_proba[0][0] - 0.5)*2*100 # Probability of churn
+        
+    
+        #prediction_text = "Customer Churn" if prediction == 1 else "Customer Not Churn"
 
-        return jsonify({"Prediction": str(int((results[0])))})
+        return jsonify({
+            "Prediction": str(prediction),
+            #"Confidence_Score": f"{confidence:.2f}%",
+            #"Message": prediction_text
+        })
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

@@ -144,7 +144,20 @@
                     body: new URLSearchParams(data)
                 });
                 const result = await response.json();
-                document.getElementById('result').innerText = `Prediction: ${result.Prediction}`;
+                
+
+                const predictionText = result.Prediction === "1" 
+                    ? "Customer is likely to churn" 
+                    : "Customer is not likely to churn";
+
+                document.getElementById('result').innerHTML = `
+                    <div>Prediction: ${result.Prediction}</div>
+                    
+                    <div style="color: ${result.Prediction === "1" ? 'red' : 'green'}; font-weight: bold;">
+                    ${predictionText}
+                    </div>
+                `;
+
             } catch (error) {
                 document.getElementById('result').innerText = `Error: ${error}`;
             }

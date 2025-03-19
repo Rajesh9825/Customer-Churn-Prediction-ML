@@ -17,8 +17,8 @@ class PredictPipeline:
             data_encoded = preprocessor.transform(features)
             preds = model.predict(data_encoded)
             pred_proba = model.predict_proba(data_encoded)
-            print(pred_proba)
-            return preds
+            #print(pred_proba)
+            return (preds,pred_proba)
     
         except Exception as e:
             raise CustomException(e,sys)
