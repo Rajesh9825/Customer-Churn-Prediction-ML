@@ -60,3 +60,11 @@ def evaluate_models(X_train,y_train,X_test,y_test,models):
 
     except Exception as e:
         raise CustomException(e,sys)
+    
+
+
+
+def load_data(file_path):
+    data_path = file_path
+    df = pd.read_csv(data_path)
+    return df
