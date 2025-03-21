@@ -13,7 +13,8 @@ The goal of this project is to develop a machine learning model that predicts wh
 * Deploy the trained model as a web application for better accessibility.
 
 ## Project Structure:
-📁 Customer-Churn-Prediction
+```
+Customer-Churn-Prediction
 |-- .github
 |   |--worklows
 |   |   |-- main.yaml
@@ -45,7 +46,7 @@ The goal of this project is to develop a machine learning model that predicts wh
 |-- README.md
 |-- requirements.txt
 |-- setup.py
-
+```
 
 ## Steps to Solve the Problem
 ### Data Collection & Exploration: 
@@ -76,6 +77,7 @@ The goal of this project is to develop a machine learning model that predicts wh
 To make model predictions more accessible, I developed a Flask-based web app with an interactive UI.
 * Frontend: HTML, CSS, JavaScript
 * Backend: Flask API (Handles user input and returns predictions)
+
 Users can enter customer details and get an instant churn prediction through a user-friendly interface.
 
 ## Deployment Journey
@@ -83,9 +85,8 @@ Users can enter customer details and get an instant churn prediction through a u
 * Containerized the model using Docker.
 * Deployed using AWS EC2 & Elastic Container Registry (ECR).
 * Automated deployment using GitHub Actions CI/CD pipeline.
-Due to cost concerns, the EC2 instance was terminated, but prediction results were recorded as proof.
 
-![alt text](images/video.mp4)
+Due to cost concerns, the EC2 instance was terminated, but prediction results were recorded as proof.
 
 2. Cost-Free Deployment: Render
 To ensure free hosting, I redeployed the model using Render.
