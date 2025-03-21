@@ -1,13 +1,13 @@
-## Customer Churn Prediction
+# Customer Churn Prediction
 
-#### Introduction:
+## Introduction:
 Customer churn is a critical issue in the banking industry. Identifying customers who are likely to leave enables banks to take proactive measures to retain them. This project involves building a machine learning model to predict customer churn and deploying it as a web application for easy accessibility.
 
-#### Problem Statement:
+## Problem Statement:
 Banks face significant losses due to customer churn. The goal of this project is to develop a predictive model that can identify customers who are at risk of leaving based on their historical data, demographics, and behavioral patterns.
 
-#### Data Collection & Preprocessing:
-##### Dataset: 
+## Data Collection & Preprocessing:
+### Dataset: 
 The dataset consists of customer information, financial attributes, and behavioral metrics. Below is a description of the key features:
 1.	RowNumber: Unique index for each customer record.
 2.	CustomerId: Unique identifier assigned to each customer.
@@ -24,7 +24,7 @@ The dataset consists of customer information, financial attributes, and behavior
 13.	EstimatedSalary: Estimated annual salary of the customer.
 14.	Exited: Target variable (1 = Customer churned, 0 = Customer retained).
 
-##### Preprocessing Steps: 
+### Preprocessing Steps: 
 1. Handling missing values:
 No missing values were present in the dataset.
 
@@ -38,31 +38,30 @@ Feature scaling was applied to numerical variables to standardize the dataset.
 The dataset was imbalanced, so Synthetic Minority Over-sampling Technique (SMOTE) was applied to balance the classes.
 
 
-#### Exploratory Data Analysis (EDA):
+## Exploratory Data Analysis (EDA):
 
+## Feature Engineering:
 
-#### Feature Engineering:
-
-#### Model Development
-##### Algorithm Used: 
+## Model Development
+### Algorithm Used: 
 1. Logistic Regression: Used as a baseline model due to its simplicity and interpretability.
 2. Random Forest: An ensemble learning method providing high accuracy and feature importance insights.
 3. Gradient Boosting (XGBoost): A powerful boosting algorithm that optimizes performance by sequentially improving weak learners.
 
-##### Model Training & Evaluation: 
+### Model Training & Evaluation: 
 
 
-#### Web Application Development
+## Web Application Development
 Developed fronend using HTML,CSS and Javascript for an interactive and user-friendly interface.
 And implemented backend using Flask to handle model inference and API requests.
 
-#### Model Deployment
+## Model Deployment
 web link : https://customer-churn-prediction-xrw0.onrender.com 
 
-#### Conclusion
+## Conclusion
 The developed model successfully predicts customer churn and is accessible via a web application. This can help banks implement targeted retention strategies, thereby reducing customer attrition and improving customer satisfaction.
 
-#### Future Enhancements
+## Future Enhancements
 Improving model performance with deep learning techniques
 Incorporating real-time data streams
 Enhancing web app UI/UX for better user experience
