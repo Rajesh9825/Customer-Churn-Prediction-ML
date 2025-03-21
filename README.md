@@ -55,8 +55,12 @@ The dataset was imbalanced, so Synthetic Minority Over-sampling Technique (SMOTE
 Developed fronend using HTML,CSS and Javascript for an interactive and user-friendly interface.
 And implemented backend using Flask to handle model inference and API requests.
 
+![alt text](image.png)
+
 ## Model Deployment
-web link : https://customer-churn-prediction-xrw0.onrender.com 
+weblink : https://customer-churn-prediction-xrw0.onrender.com 
+
+![alt text](image-1.png)
 
 ## Conclusion
 The developed model successfully predicts customer churn and is accessible via a web application. This can help banks implement targeted retention strategies, thereby reducing customer attrition and improving customer satisfaction.
