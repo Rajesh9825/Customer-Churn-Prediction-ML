@@ -67,10 +67,15 @@ Customer-Churn-Prediction
     * Advanced Models: K-Nearest Neighbors (KNN), Decision Trees, Random Forest, Gradient Boosting
 * Compared models using evaluation metrics:
     * Accuracy, Precision, Recall, F1-Score, ROC-AUC Curve
-* Selected the best-performing model based on results.
+* Selected the best-performing model based on results: Gradient Boosting Model
+  Precision : 0.69
+  Recall : 0.57
+  F1 Score : 0.86
+  ROC AUC Score : 0.75
+  
 
-### Why This Model?
-<!-- * After comparing different models, [Your Best Model] performed the best due to [reasons like better generalization, lower overfitting, etc.].
+<!--### Why This Model?
+ * After comparing different models, [Your Best Model] performed the best due to [reasons like better generalization, lower overfitting, etc.].
 * This model provides actionable insights for businesses to proactively reduce customer churn. -->
 
 ## Web Application Development
